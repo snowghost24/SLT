@@ -1,7 +1,7 @@
 ### Schema
-DROP DATABASE IF EXISTS vechicles_db;
-CREATE DATABASE vechicles_db;
-USE vechicles_db;
+DROP DATABASE IF EXISTS vehicles_db;
+CREATE DATABASE vehicles_db;
+USE vehicles_db;
 
 CREATE TABLE clients
 (
@@ -22,9 +22,12 @@ CREATE TABLE vehicles
 	model varchar(100) NOT NULL,
 	model_year YEAR(4) NOT NULL,
 	client_name varchar(200) NOT NULL,
-	client_id int NOT NULL,
+	client_id int,
+	job ENUM('leather','detail','miscellaneous') NOT NULL,
 	cost DECIMAL(7,2),
-	paid ENUM('paid', 'not paid'),
+	paid_status ENUM('paid', 'not paid'),
 	PRIMARY KEY (id),
 	FOREIGN KEY (client_id) REFERENCES clients(id)
 );
+
+

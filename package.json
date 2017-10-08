@@ -1,0 +1,26 @@
+{
+  "name": "slt",
+  "version": "1.0.0",
+  "description": "This app is used by southern leather and trip to store info",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snowghost24/SLT.git"
+  },
+  "author": "Jose Guzman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/snowghost24/SLT/issues"
+  },
+  "homepage": "https://github.com/snowghost24/SLT#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.15.0"
+  }
+}
