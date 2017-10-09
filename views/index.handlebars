@@ -1,0 +1,116 @@
+
+<h1>Its working {{vehicles}}</h1>
+  <ul>
+    {{#each vehicles}}
+    <li>
+      <p>
+        {{this.make}}
+      </p>
+    </li>
+    {{/each}}
+  </ul>
+
+  <script>
+    // WBAPK5C52AA599960
+
+
+
+
+    // ─────────Inserts current date into date value ───────────────────────────// 
+    date = new Date();
+    year = date.getFullYear();
+    month = date.getMonth() + 1;
+    dt = date.getDate();
+
+    if (dt < 10) {
+      dt = '0' + dt;
+    }
+    if (month < 10) {
+      month = '0' + month;
+    }
+    $("#inputDate").val(year + '-' + month + '-' + dt)
+
+    // ─────────Auto populates values after entering vin ───────────────────────────// 
+    function runApi() {
+      var theVin = $("#inputVin1").val();
+      if (theVin != "") {
+        var vinNumb = document.querySelector('#inputVin1').value
+        $.ajax({
+          url: "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVINValuesBatch/",
+          type: "POST",
+          data: { format: "json", data: vinNumb },
+          dataType: "json",
+          success: function (result) {
+            document.querySelector('#inputMake1').value = result["Results"][0]["Make"];
+            document.querySelector('#inputModel1').value = result["Results"][0]["Model"];
+            document.querySelector('#inputYear1').value = result["Results"][0]["ModelYear"];
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);
+          }
+        });
+      }
+    }
+
+    // ─────────Grabs and sanitates input values ───────────────────────────// 
+
+    $("#vehicleForm").on("submit", function (event) {
+      // Make sure to preventDefault on a submit event.
+      //TODO: come back and make sure all fields are sanitized
+      // Capure all entered values and insert into an object
+      var theVehicle = {
+        day_finished: $("#inputDate").val(),
+        vin: $("#inputVin1").val(),
+        make: $("#inputMake1").val(),
+        model: $("#inputModel1").val(),
+        model_year: parseInt($("#inputYear1").val()),
+        client_name: $("#inputclient").val(),
+        job: $("#inputJob").val(),
+        cost: parseFloat($("#inputcost").val()),
+        paid_status: $("#paidStatus").val()
+      }
+
+      //TODO: make sure this altert pops up
+
+
+
+      if ($("#inputVin1").val() == "" || $("#inputMake1").val() == "" || $("#inputModel1").val() == "" || $("#inputYear1").val() == "" || $("#inputclient").val() == "" || $("#inputcost").val() == "" || $("#inputJob").val() == "" || $("#paidStatus").val() == "") {
+        console.log(" some fields are empty");
+      } else {
+        enterValues(theVehicle);
+      }
+      // Make sure all fields are filled
+      $.each(theVehicle, function (k, v) {
+        v = "";
+      });
+
+      // sends ajax call to enter values
+      function enterValues(theVehicle) {
+        console.log("Im triggered entry ajax")
+        $.ajax({
+          url: "/entry",
+          type: "POST",
+          data: { format: "json", data: theVehicle },
+          success: function (result) {
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status);
+            console.log(thrownError);
+          }
+        });
+      }
+    });
+
+
+      $("#showCars").on("submit", function (event) {
+        var currentURL = window.location.origin;
+
+        $.get(currentURL + "/displayit", function(data){
+
+          window.location.reload;
+        })
+    
+      });
+
+  </script>

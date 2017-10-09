@@ -22,12 +22,8 @@ CREATE TABLE vehicles
 	model varchar(100) NOT NULL,
 	model_year YEAR(4) NOT NULL,
 	client_name varchar(200) NOT NULL,
-	client_id int,
 	job ENUM('leather','detail','miscellaneous') NOT NULL,
 	cost DECIMAL(7,2),
 	paid_status ENUM('paid', 'not paid'),
-	PRIMARY KEY (id),
-	FOREIGN KEY (client_id) REFERENCES clients(id)
+	PRIMARY KEY (id)
 );
-
-

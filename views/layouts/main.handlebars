@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Burgers</title>
+  <title>Vehicle Data</title>
   <!-- <link href="./assets/css/bootstrap.css" rel="stylesheet"> -->
   <!-- Custom styles for this template -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -16,7 +16,6 @@
   <style>
     ul {
       list-style-type: none;
-
     }
 
     li {
@@ -27,192 +26,79 @@
   </style>
 </head>
 
-
-
 <body>
   <div class="container">
-    <!-- This form collects the data for vehicles enter -->
-    <div>
-      <form id="vehicleForm">
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="inputVin4" class="col-form-label">VIN Number</label>
-            <input type="text" class="form-control" onblur="runApi()" id="inputVin1" placeholder="Enter Vin Number Here">
+  <!-- This form collects the data for vehicles enter -->
+  <div>
+    <form id="vehicleForm">
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label for="inputVin4" class="col-form-label">Date</label>
+          <input type="text" class="form-control" onblur="runApi()" id="inputDate">
 
-          </div>
-          <div class="form-group col-md-3">
-            <label for="inputPassword4" class="col-form-label">Make </label>
-            <input type="text" class="form-control" id="inputMake1" placeholder="make">
-          </div>
-          <div class="form-group col-md-3">
-            <label for="inputPassword4" class="col-form-label">Model</label>
-            <input type="text" class="form-control" id="inputModel1" placeholder="model">
-          </div>
-          <div class="form-group col-md-2">
-            <label for="inputPassword4" class="col-form-label">Year</label>
-            <input type="text" class="form-control" id="inputYear1" placeholder="ex. 2012">
-          </div>
         </div>
+        <div class="form-group col-md-2">
+          <label for="inputVin4" class="col-form-label">VIN Number</label>
+          <input type="text" class="form-control" onblur="runApi()" id="inputVin1" placeholder="Enter Vin Number Here">
 
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="inputclient" class="col-form-label">Client</label>
-            <input type="text" list="clientsId" id="inputclient" class="form-control" placeholder="choose or enter client name" />
-            <datalist id="clientsId">
-              <option>Dean Marco</option>
-              <option>Eddy</option>
-              <option>Joe</option>
-            </datalist>
-          </div>
-          <div class="form-group col-md-3">
-            <label for="inputJob" class="col-form-label">Job</label>
-            <input type="text" list="jobs" id="inputJob" class="form-control" />
-            <datalist id="jobs">
-              <option>Leather</option>
-              <option>Detail</option>
-              <option>Miscellaneous</option>
-            </datalist>
-          </div>
-          <div class="form-group col-md-3">
-            <label for="inputPassword4" class="col-form-label">Cost</label>
-            <input type="text" class="form-control" id="inputcost" placeholder="Enter Dollar Amount">
-          </div>
-          <div class="form-group col-md-2">
-            <label for="paidStatus" class="col-form-label">Paid Status</label>
-            <input type="text" list="paidStat" id="paidStatus" class="form-control" />
-            <datalist id="paidStat">
-              <option>Not Paid</option>
-              <option>Paid</option>
-            </datalist>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit Vehicle</button>
-      </form>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="inputPassword4" class="col-form-label">Make </label>
+          <input type="text" class="form-control" id="inputMake1" placeholder="make">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="inputPassword4" class="col-form-label">Model</label>
+          <input type="text" class="form-control" id="inputModel1" placeholder="model">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputPassword4" class="col-form-label">Year</label>
+          <input type="text" class="form-control" id="inputYear1" placeholder="ex. 2012">
+        </div>
       </div>
 
-      <div id="addedCars">
-
-
-      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputclient" class="col-form-label">Client</label>
+          <input type="text" list="clientsId" id="inputclient" class="form-control" placeholder="choose or enter client name" />
+          <datalist id="clientsId">
+            <option>Dean Marco</option>
+            <option>Eddy</option>
+            <option>Joe</option>
+          </datalist>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="inputJob" class="col-form-label">Job</label>
+          <input type="text" list="jobs" id="inputJob" class="form-control" />
+          <datalist id="jobs">
+            <option>Leather</option>
+            <option>Detail</option>
+            <option>Miscellaneous</option>
+          </datalist>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="inputPassword4" class="col-form-label">Cost</label>
+          <input type="text" class="form-control" id="inputcost" placeholder="Enter Dollar Amount">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="paidStatus" class="col-form-label">Paid Status</label>
+          <input type="text" list="paidStat" id="paidStatus" class="form-control" />
+          <datalist id="paidStat">
+            <option>Not Paid</option>
+            <option>Paid</option>
+          </datalist>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Vehicle</button>
+    </form>
     </div>
+    <h1>Completed Vehicles</h1>
+    <form action="/displayit">
+    <button type="submit"  id="showCars" class="btn btn-outline-info btn-lg btn-block">Press To Show Completed Vehicles</button>
+    </form>
 
-
-    <script>
-
-      // WBAPK5C52AA599960
-      // this function is used to populate vehicle info from api 
-      function runApi() {
-        var theVin = $("#inputVin1").val();
-        if (theVin != "") {
-          var vinNumb = document.querySelector('#inputVin1').value
-          $.ajax({
-            url: "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVINValuesBatch/",
-            type: "POST",
-            data: { format: "json", data: vinNumb },
-            dataType: "json",
-            success: function (result) {
-              document.querySelector('#inputMake1').value = result["Results"][0]["Make"];
-              document.querySelector('#inputModel1').value = result["Results"][0]["Model"];
-              document.querySelector('#inputYear1').value = result["Results"][0]["ModelYear"];
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-              console.log(xhr.status);
-              console.log(thrownError);
-            }
-          });
-        }
-      }
-
-
-      $("#vehicleForm").on("submit", function (event) {
-        // Make sure to preventDefault on a submit event.
-        console.log(" Im here")
-        event.preventDefault();
-        //TODO: come back and fix input fields
-        var theVehicle = {
-          vin: $("#inputVin1").val(),
-          make: $("#inputMake1").val(),
-          model: $("#inputModel1").val(),
-          model_year: parseInt($("#inputYear1").val()),
-          client_name: $("#inputclient").val(),
-          cost: parseFloat($("#inputcost").val()),
-          job: $("#inputJob").val(),
-          paid_status: $("#paidStatus").val(),
-        }
-
-
-        $.each(theVehicle, function (k, v) {
-          if (v == "") {
-            event.stopPropagation();
-            //TODO: make sure this altert pops up
-            console.log(" all fields must be complete")
-          }
-        });
-
-        function enterData() {
-          $.ajax({
-            url: "/test",
-            type: "POST",
-            data: { format: "json", data: theVehicle },
-            dataType: "json",
-            success: function (result) {
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-              console.log(xhr.status);
-              console.log(thrownError);
-            }
-          });
-        }
-
-
-        $("#inputVin1").val("")
-        $("#inputMake1").val("")
-        $("#inputMake1").val("")
-        $("#inputModel1").val("")
-        $("#inputYear1").val("")
-        $("#inputclient").val("")
-        $("#inputcost").val("")
-        $("#paidStatus").val("")
-
-      });
-
-
-
-
-
-    </script>
+    <div id="addedCars">
+  </div>
+  </div>
+  {{{ body }}}
 </body>
 
 </html>
-
-<!-- 
-     displayEntry(theVehicle);
-     function displayEntry(theVehicle) {
-            $("#addedCars").append("<ul id='ultUl'></ul>")
-            $.each(theVehicle, function (k, v) {
-               $("#ultUl").append('<li class"separate">' + v + '</li>')
-            });
-         }
-   
-   
-   
-   <div class="form-group">
-              <label for="inputAddress" class="col-form-label">Address</label>
-              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="form-group">
-              <label for="inputAddress2" class="col-form-label">Address 2</label>
-              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputCity" class="col-form-label">City</label>
-                <input type="text" class="form-control" id="inputCity">
-              </div>
-              <div class="form-group col-md-4">
-                <label for="inputState" class="col-form-label">State</label>
-                <select id="inputState" class="form-control">Choose</select>
-              </div>
-              <div class="form-group col-md-2">
-                <label for="inputZip" class="col-form-label">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
-              </div> -->
